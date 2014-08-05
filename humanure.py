@@ -21,11 +21,15 @@ while True:
     status_id = str(mention['id'])
     if not Mention.query.filter_by(status_id=status_id).all():
       screen_name = '@' + mention['user']['screen_name']
-      twitter.update_status_with_media(status = screen_name,
-                                       media  = img,
-                                       in_reply_to_status_id = status_id)
-      Mention(status_id=status_id) # builds new mention
-      session.commit() # saves Mention
+      try:
+        twitter.update_status_with_media(status = screen_name,
+                                         media  = img,
+                                         in_reply_to_status_id = status_id)
+      except:
+        continue
+      finally:
+        Mention(status_id=status_id) # builds new mention
+        session.commit() # saves Mention
     else:
       print 'We replied to this one already!'
 
