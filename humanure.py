@@ -3,15 +3,15 @@
 
 from twython import Twython
 from mention import *
-import time
+import time, os
 
 setup_all()
 create_all()
 
-CONSUMER_KEY    = 'iAsmYLEOXvcUKmBdB31UnSf39'
-CONSUMER_SECRET = 'x5pgFtC1a7GLXQeGbUn1rVkO4p1XOcRQViY12ii1Ab9u6umlQR'
-OAUTH_TOKEN     = '501407305-QW818odRc9DKuUqCqZOAXwKu7p091C3XJlp7la8i'
-OAUTH_SECRET    = 'RD4ShNSCCAwsTkqAzaNS17BFCtSPUTxEkaPcRx6Muetq6'
+CONSUMER_KEY    = os.environ['CONSUMER_KEY']
+CONSUMER_SECRET = os.environ['CONSUMER_SECRET']
+OAUTH_TOKEN     = os.environ['OAUTH_TOKEN']
+OAUTH_SECRET    = os.environ['OAUTH_SECRET']
 
 twitter = Twython(CONSUMER_KEY, CONSUMER_SECRET, OAUTH_TOKEN, OAUTH_SECRET)
 img = open("album_artwork.jpeg", 'rb')
